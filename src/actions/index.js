@@ -9,17 +9,10 @@ export function fetchWeather(searchTerm) {
 
   //make the get request
   const URL = `${ROOT_URL}?q=${searchTerm}&appid=${API_KEY}`;
-
-  const weather = axios.get(URL)
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
+  const request = axios.get(URL);
 
   return {
     type: FETCH_WEATHER,
-    payload: weather
+    payload: request
   };
 }
