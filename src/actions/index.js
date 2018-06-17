@@ -5,10 +5,10 @@ const ROOT_URL = `http://api.openweathermap.org/data/2.5/forecast`;
 
 export const FETCH_WEATHER = 'FETCH_WEATHER';
 
-export function fetchWeather(searchTerm) {
+export function fetchWeather(lat, lon) {
 
   //make the get request
-  const URL = `${ROOT_URL}?q=${searchTerm}&appid=${API_KEY}`;
+  const URL = `${ROOT_URL}?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
   const request = axios.get(URL);
 
   return {

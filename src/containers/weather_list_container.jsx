@@ -17,7 +17,7 @@ class WeatherList extends Component {
         <table className="table table-borderless table-hover ">
             <thead className="">
                 <tr>
-                    <th>City</th>
+                    <th>Location</th>
                     <th>Temperature (&deg; C)</th>
                     <th>Humidity (%)</th>
                     <th>Wind Speed (km/h)</th>

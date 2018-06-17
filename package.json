@@ -9,6 +9,7 @@
     "lodash": "^3.10.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "react-google-maps": "^9.4.5",
     "react-redux": "5.0.7",
     "react-scripts": "1.1.4",
     "react-sparklines": "^1.7.0",
