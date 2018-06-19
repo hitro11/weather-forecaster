@@ -1,6 +1,9 @@
+/*global google*/
+
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
+import SearchBox from "react-google-maps/lib/components/places/SearchBox";
 
 import {fetchWeather} from '../actions/index';
 
@@ -8,28 +11,50 @@ class SearchBar extends Component {
 
   constructor(props) {
      super(props);
-     this.state = {term: ''};
+     this.state = {term: '', searchBox: {}};
 
      this.onInputChange = this.onInputChange.bind(this);
      this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
-  render() {
+  componentDidMount() {
+    var input = this.refs.input;
+    var searchBox = new google.maps.places.SearchBox(input);    
+    this.setState({searchBox: searchBox}); 
+
+    // listeneer for when user selects a place.
+    searchBox.addListener('places_changed', () => {
+      console.log('place selected');
+      let places = this.state.searchBox.getPlaces();
+      let lat = places[0].geometry.location.lat();
+      let lon = places[0].geometry.location.lng();
+      this.props.fetchWeather(lat, lon);
+    });
+
+  }
+
+  render() {   
+
     return (
       <form onSubmit={this.onFormSubmit} className="input-group">
-        <input
-          placeholder="Enter cities here to get their 5 day forecast" 
-          className="form-control"
-          value={this.state.term}
-          onChange={this.onInputChange}
-
-        />
+      
+       <input
+            ref="input"
+            id="pac-input"
+            placeholder="Enter cities here to get their 5 day forecast" 
+            className="form-control controls"
+            value={this.state.term}
+            onChange={this.onInputChange}
+          />        
+        
         <span className="input-group-btn">
           <button type="submit" className="btn btn-secondary">Search</button>        
         </span>
       </form>
     );
   }
+
+  
 
   onInputChange(event) {
     this.setState( {term: event.target.value});
@@ -38,9 +63,9 @@ class SearchBar extends Component {
   onFormSubmit(event) {
     event.preventDefault();
 
-    //get weather!
-    this.props.fetchWeather(this.state.term);
-    this.setState({term: ''});
+    //get weather!    
+
+   
   }
 }
 
