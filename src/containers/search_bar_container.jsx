@@ -3,7 +3,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
-import SearchBox from "react-google-maps/lib/components/places/SearchBox";
+// import SearchBox from "react-google-maps/lib/components/places/SearchBox";
 
 import {fetchWeather} from '../actions/index';
 
@@ -30,32 +30,34 @@ class SearchBar extends Component {
       let lon = places[0].geometry.location.lng();
       this.props.fetchWeather(lat, lon);
     });
-
   }
 
   render() {   
 
     return (
-      <form onSubmit={this.onFormSubmit} className="input-group">
+      <div>
+				<h2 class="title">5 Day Weather Forecaster</h2>
+				<form onSubmit={this.onFormSubmit} className="input-group">
       
-       <input
-            ref="input"
-            id="pac-input"
-            placeholder="Enter cities here to get their 5 day forecast" 
-            className="form-control controls"
-            value={this.state.term}
-            onChange={this.onInputChange}
-          />        
-        
-        <span className="input-group-btn">
-          <button type="submit" className="btn btn-secondary">Search</button>        
-        </span>
-      </form>
+					<input
+							ref="input"
+							id="pac-input"
+							placeholder="Enter cities here to get their 5 day forecast" 
+							className="form-control controls"
+							value={this.state.term}
+							onChange={this.onInputChange}
+						/>        
+					
+						<span className="input-group-btn">
+							<button type="submit" className="btn btn-secondary">Search</button>        
+						</span>
+		 			</form>
+
+      </div>
     );
   }
 
   
-
   onInputChange(event) {
     this.setState( {term: event.target.value});
   }
