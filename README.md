@@ -1,6 +1,12 @@
 # Weather Forecaster
 A web app built with React that allows you to view forecast data (temperature, humidity, and wind speed) of selected cities for the next 5 days.
 
+![preview picture](https://github.com/hitro11/hitro11.github.io/blob/master/assets/img/forecaster.PNG?raw=true)
+
+
+
+
+
 ## Details
 
 #### Behavior
