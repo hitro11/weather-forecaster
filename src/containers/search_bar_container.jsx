@@ -22,7 +22,7 @@ class SearchBar extends Component {
     var searchBox = new google.maps.places.SearchBox(input);    
     this.setState({searchBox: searchBox}); 
 
-    // listeneer for when user selects a place.
+    // listener for when user selects a place.
     searchBox.addListener('places_changed', () => {
       console.log('place selected');
       let places = this.state.searchBox.getPlaces();
@@ -33,16 +33,14 @@ class SearchBar extends Component {
   }
 
   render() {   
-
     return (
       <div>
-				<h2 class="title">5 Day Weather Forecaster</h2>
+				<h2 className="title">5 Day Weather Forecaster</h2>
 				<form onSubmit={this.onFormSubmit} className="input-group">
-      
 					<input
 							ref="input"
 							id="pac-input"
-							placeholder="Enter cities here to get their 5 day forecast" 
+							placeholder="Enter a city here to get its 5 day forecast" 
 							className="form-control controls"
 							value={this.state.term}
 							onChange={this.onInputChange}
@@ -52,22 +50,16 @@ class SearchBar extends Component {
 							<button type="submit" className="btn btn-secondary">Search</button>        
 						</span>
 		 			</form>
-
       </div>
     );
   }
 
-  
   onInputChange(event) {
     this.setState( {term: event.target.value});
   }
 
   onFormSubmit(event) {
     event.preventDefault();
-
-    //get weather!    
-
-   
   }
 }
 

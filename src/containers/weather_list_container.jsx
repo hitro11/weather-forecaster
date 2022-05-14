@@ -8,7 +8,6 @@ class WeatherList extends Component {
 
   constructor(props) {
      super(props);
-
      this.renderWeather.bind(this);
   }
 
